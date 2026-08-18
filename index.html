@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Owais Qayoom — GIT + AI Learner &amp; Creative Technologist</title>
+<meta name="description" content="Portfolio of Owais Qayoom — GIT + AI learner, motion graphics enthusiast and creative technologist from Pampore, Kashmir.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+/* ============ TOKENS ============ */
+:root{
+  --bg:#0a0d13;
+  --bg-alt:#0f1420;
+  --bg-card:#121826;
+  --line:rgba(232,230,225,0.08);
+  --line-strong:rgba(232,230,225,0.16);
+  --ink:#e9e7e1;
+  --muted:#8b92a5;
+  --muted-dim:#5b6274;
+  --saffron:#f2a93b;
+  --saffron-deep:#e1782e;
+  --violet:#7b78ff;
+  --violet-dim:#4d4b99;
+  --font-display:'Space Grotesk', sans-serif;
+  --font-body:'Inter', sans-serif;
+  --font-mono:'JetBrains Mono', monospace;
+  --container:1180px;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--font-body);
+  line-height:1.6;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--saffron);color:#0a0d13;}
+
+img,svg{display:block;max-width:100%;}
+a{color:inherit;text-decoration:none;}
+ul{list-style:none;}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit;}
+
+.wrap{max-width:var(--container);margin:0 auto;padding:0 32px;}
+
+::-webkit-scrollbar{width:10px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:var(--line-strong);border-radius:10px;}
+
+:focus-visible{outline:2px solid var(--saffron);outline-offset:3px;border-radius:2px;}
+
+/* background texture */
+.grain-bg{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:
+    radial-gradient(circle at 18% 20%, rgba(123,120,255,0.10), transparent 45%),
+    radial-gradient(circle at 82% 8%, rgba(242,169,59,0.10), transparent 40%),
+    radial-gradient(circle at 50% 100%, rgba(123,120,255,0.06), transparent 50%);
+}
+.dot-grid{
+  position:fixed;inset:0;z-index:0;pointer-events:none;opacity:0.35;
+  background-image:radial-gradient(rgba(232,230,225,0.09) 1px, transparent 1px);
+  background-size:26px 26px;
+  mask-image:radial-gradient(ellipse 80% 60% at 50% 0%, black 40%, transparent 90%);
+}
+
+/* ============ EYEBROW / LABEL UTILITY ============ */
+.eyebrow{
+  font-family:var(--font-mono);
+  font-size:12.5px;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:var(--saffron);
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:18px;
+}
+.eyebrow::before{
+  content:'';
+  width:22px;height:1px;
+  background:linear-gradient(90deg,var(--saffron),transparent);
+}
+
+.section{
+  position:relative;
+  z-index:1;
+  padding:120px 0;
+  border-bottom:1px solid var(--line);
+}
+.section-head{
+  max-width:640px;
+  margin-bottom:64px;
+}
+.section-head h2{
+  font-family:var(--font-display);
+  font-size:clamp(30px,4vw,44px);
+  font-weight:600;
+  letter-spacing:-0.02em;
+  line-height:1.15;
+}
+.section-head p{
+  color:var(--muted);
+  font-size:16px;
+  margin-top:14px;
+  max-width:520px;
+}
+
+/* reveal on scroll */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease, transform 0.7s ease;}
+.reveal.in{opacity:1;transform:translateY(0);}
+
+/* ============ NAV ============ */
+header{
+  position:fixed;top:0;left:0;right:0;z-index:50;
+  padding:22px 0;
+  transition:background 0.4s ease, border-color 0.4s ease, padding 0.4s ease;
+  border-bottom:1px solid transparent;
+}
+header.scrolled{
+  background:rgba(10,13,19,0.82);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+  padding:14px 0;
+}
+nav{display:flex;align-items:center;justify-content:space-between;}
+.logo{
+  font-family:var(--font-display);
+  font-weight:700;
+  font-size:19px;
+  letter-spacing:-0.01em;
+  display:flex;align-items:center;gap:10px;
+}
+.logo .dot{width:8px;height:8px;border-radius:50%;background:linear-gradient(135deg,var(--saffron),var(--violet));box-shadow:0 0 12px rgba(242,169,59,0.7);}
+.nav-links{display:flex;gap:36px;align-items:center;}
+.nav-links a{
+  font-size:14px;font-weight:500;color:var(--muted);
+  position:relative;padding:4px 0;
+  transition:color 0.25s ease;
+}
+.nav-links a:hover{color:var(--ink);}
+.nav-links a::after{
+  content:'';position:absolute;left:0;bottom:0;width:0;height:1px;
+  background:var(--saffron);transition:width 0.25s ease;
+}
+.nav-links a:hover::after{width:100%;}
+.nav-cta{
+  font-family:var(--font-mono);
+  font-size:13px;
+  padding:9px 18px;
+  border:1px solid var(--line-strong);
+  border-radius:100px;
+  transition:border-color 0.25s ease, color 0.25s ease, background 0.25s ease;
+}
+.nav-cta:hover{border-color:var(--saffron);color:var(--saffron);background:rgba(242,169,59,0.06);}
+.burger{display:none;flex-direction:column;gap:5px;width:26px;z-index:60;}
+.burger span{height:2px;background:var(--ink);border-radius:2px;transition:transform 0.3s ease, opacity 0.3s ease;}
+.mobile-panel{
+  position:fixed;inset:0;background:rgba(10,13,19,0.98);backdrop-filter:blur(10px);
+  z-index:45;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:32px;
+  opacity:0;pointer-events:none;transition:opacity 0.35s ease;
+}
+.mobile-panel.open{opacity:1;pointer-events:all;}
+.mobile-panel a{font-family:var(--font-display);font-size:26px;font-weight:600;}
+
+/* ============ HERO ============ */
+.hero{
+  position:relative;
+  min-height:100vh;
+  display:flex;align-items:center;
+  padding-top:120px;padding-bottom:80px;
+  overflow:hidden;
+}
+.hero .wrap{
+  display:grid;
+  grid-template-columns:1.1fr 0.9fr;
+  gap:40px;
+  align-items:center;
+  position:relative;z-index:2;
+}
+.hero-tag{
+  font-family:var(--font-mono);
+  font-size:13px;color:var(--muted);
+  display:flex;align-items:center;gap:10px;margin-bottom:26px;
+  letter-spacing:0.04em;
+}
+.hero-tag .loc-dot{width:6px;height:6px;border-radius:50%;background:var(--saffron);animation:pulse 2.2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.35;}}
+
+.hero h1{
+  font-family:var(--font-display);
+  font-weight:700;
+  font-size:clamp(44px,7vw,84px);
+  line-height:1.02;
+  letter-spacing:-0.03em;
+}
+.hero h1 .grad{
+  background:linear-gradient(100deg,var(--saffron) 5%, var(--saffron-deep) 40%, var(--violet) 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hero .role{
+  font-family:var(--font-mono);
+  font-size:clamp(14px,1.6vw,17px);
+  color:var(--muted);
+  margin-top:22px;
+  letter-spacing:0.01em;
+}
+.hero .role b{color:var(--ink);font-weight:500;}
+.hero .tagline{
+  margin-top:22px;
+  font-size:18px;
+  color:var(--ink);
+  max-width:460px;
+  opacity:0.9;
+}
+.hero-cta{display:flex;gap:16px;margin-top:40px;flex-wrap:wrap;}
+.btn{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:15px 26px;
+  border-radius:100px;
+  font-size:14.5px;font-weight:600;
+  transition:transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+}
+.btn-primary{
+  background:linear-gradient(100deg,var(--saffron),var(--saffron-deep));
+  color:#181008;
+}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 30px -8px rgba(242,169,59,0.55);}
+.btn-ghost{
+  border:1px solid var(--line-strong);
+  color:var(--ink);
+}
+.btn-ghost:hover{border-color:var(--violet);background:rgba(123,120,255,0.08);transform:translateY(-2px);}
+
+.hero-stats{display:flex;gap:36px;margin-top:56px;flex-wrap:wrap;}
+.hero-stats div{border-left:1px solid var(--line-strong);padding-left:14px;}
+.hero-stats .num{font-family:var(--font-display);font-size:22px;font-weight:600;color:var(--saffron);}
+.hero-stats .lbl{font-size:12.5px;color:var(--muted);margin-top:2px;}
+
+/* signature: crocus / circuit bloom */
+.bloom-wrap{position:relative;display:flex;align-items:center;justify-content:center;}
+.bloom-wrap svg{width:100%;max-width:460px;}
+.bloom-line{
+  fill:none;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  stroke-dasharray:520;
+  stroke-dashoffset:520;
+  animation:draw 2.6s cubic-bezier(.65,0,.35,1) forwards;
+}
+.bloom-line.d2{animation-delay:0.25s;}
+.bloom-line.d3{animation-delay:0.5s;}
+.bloom-line.trace{animation-delay:1s;stroke-dasharray:340;stroke-dashoffset:340;}
+@keyframes draw{to{stroke-dashoffset:0;}}
+.bloom-node{
+  opacity:0;
+  animation:nodeIn 0.6s ease forwards;
+  animation-delay:2s;
+  transform-origin:center;
+}
+@keyframes nodeIn{
+  from{opacity:0;transform:scale(0);}
+  to{opacity:1;transform:scale(1);}
+}
+.bloom-wrap .halo{
+  position:absolute;width:340px;height:340px;border-radius:50%;
+  background:radial-gradient(circle, rgba(242,169,59,0.16), transparent 70%);
+  filter:blur(10px);
+  animation:halo 6s ease-in-out infinite;
+}
+@keyframes halo{0%,100%{transform:scale(1);opacity:0.8;}50%{transform:scale(1.12);opacity:1;}}
+
+.scroll-cue{
+  position:absolute;bottom:36px;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  font-family:var(--font-mono);font-size:11px;color:var(--muted-dim);letter-spacing:0.12em;
+}
+.scroll-cue .line{width:1px;height:34px;background:linear-gradient(var(--saffron),transparent);animation:scrollcue 2s ease-in-out infinite;}
+@keyframes scrollcue{0%{transform:scaleY(0);transform-origin:top;}50%{transform:scaleY(1);transform-origin:top;}51%{transform-origin:bottom;}100%{transform:scaleY(0);transform-origin:bottom;}}
+
+/* ============ ABOUT ============ */
+.about-grid{
+  display:grid;grid-template-columns:0.9fr 1.1fr;gap:64px;align-items:start;
+}
+.about-card{
+  background:var(--bg-card);
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:32px;
+  position:relative;
+  overflow:hidden;
+}
+.about-card::before{
+  content:'';position:absolute;top:-40%;right:-40%;width:70%;height:70%;
+  background:radial-gradient(circle, rgba(242,169,59,0.14), transparent 70%);
+}
+.about-card .init{
+  font-family:var(--font-display);font-size:52px;font-weight:700;
+  background:linear-gradient(120deg,var(--saffron),var(--violet));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.about-card .name{font-family:var(--font-display);font-size:20px;font-weight:600;margin-top:10px;}
+.about-card .from{font-size:13.5px;color:var(--muted);margin-top:4px;font-family:var(--font-mono);}
+.about-meta{margin-top:26px;display:flex;flex-direction:column;gap:14px;position:relative;z-index:1;}
+.about-meta .row{display:flex;justify-content:space-between;font-size:13.5px;border-top:1px solid var(--line);padding-top:14px;}
+.about-meta .row span:first-child{color:var(--muted-dim);font-family:var(--font-mono);font-size:12px;text-transform:uppercase;letter-spacing:0.06em;}
+
+.about-copy p{color:var(--muted);font-size:16.5px;margin-bottom:20px;max-width:560px;}
+.about-copy p b{color:var(--ink);font-weight:600;}
+.about-copy .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px;}
+.chip{
+  font-family:var(--font-mono);font-size:12.5px;
+  padding:8px 14px;border-radius:100px;
+  border:1px solid var(--line-strong);color:var(--muted);
+  transition:all 0.25s ease;
+}
+.chip:hover{color:var(--saffron);border-color:var(--saffron);background:rgba(242,169,59,0.06);}
+
+/* ============ EDUCATION (timeline) ============ */
+.timeline{position:relative;max-width:760px;margin-top:10px;}
+.timeline::before{
+  content:'';position:absolute;left:11px;top:6px;bottom:6px;width:1px;
+  background:linear-gradient(var(--saffron), var(--violet));
+}
+.t-item{position:relative;padding-left:48px;padding-bottom:52px;}
+.t-item:last-child{padding-bottom:0;}
+.t-item .t-dot{
+  position:absolute;left:0;top:2px;width:23px;height:23px;border-radius:50%;
+  background:var(--bg);border:2px solid var(--saffron);
+  display:flex;align-items:center;justify-content:center;
+}
+.t-item .t-dot::after{content:'';width:7px;height:7px;border-radius:50%;background:var(--saffron);}
+.t-item.active .t-dot{border-color:var(--violet);}
+.t-item.active .t-dot::after{background:var(--violet);}
+.t-year{font-family:var(--font-mono);font-size:12.5px;color:var(--saffron);letter-spacing:0.06em;margin-bottom:6px;}
+.t-item.active .t-year{color:var(--violet);}
+.t-item h3{font-family:var(--font-display);font-size:21px;font-weight:600;}
+.t-item p{color:var(--muted);font-size:15px;margin-top:8px;max-width:520px;}
+.t-badge{
+  display:inline-block;margin-top:12px;font-family:var(--font-mono);font-size:11px;
+  padding:5px 11px;border-radius:100px;border:1px solid var(--line-strong);color:var(--muted);
+}
+.t-item.active .t-badge{color:var(--violet);border-color:var(--violet-dim);background:rgba(123,120,255,0.08);}
+
+/* ============ SKILLS ============ */
+.skills-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:18px;
+}
+.skill-card{
+  background:var(--bg-card);
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:26px 24px;
+  position:relative;
+  transition:transform 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+  overflow:hidden;
+}
+.skill-card::before{
+  content:'';position:absolute;top:0;left:0;width:100%;height:2px;
+  background:linear-gradient(90deg,var(--saffron),var(--violet));
+  transform:scaleX(0);transform-origin:left;transition:transform 0.35s ease;
+}
+.skill-card:hover{transform:translateY(-6px);border-color:var(--line-strong);background:#141b2b;}
+.skill-card:hover::before{transform:scaleX(1);}
+.skill-card .icon{
+  width:42px;height:42px;border-radius:11px;
+  background:linear-gradient(135deg, rgba(242,169,59,0.16), rgba(123,120,255,0.16));
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:18px;
+}
+.skill-card .icon svg{width:21px;height:21px;stroke:var(--saffron);}
+.skill-card h4{font-family:var(--font-display);font-size:16.5px;font-weight:600;}
+.skill-card .bar{height:3px;border-radius:3px;background:var(--line);margin-top:16px;overflow:hidden;}
+.skill-card .bar span{display:block;height:100%;background:linear-gradient(90deg,var(--saffron),var(--violet));border-radius:3px;transform:scaleX(0);transform-origin:left;transition:transform 1s cubic-bezier(.4,0,.2,1);}
+.skill-card.in .bar span{transform:scaleX(var(--level));}
+.skill-card .lvl-lbl{font-family:var(--font-mono);font-size:11px;color:var(--muted-dim);margin-top:8px;}
+
+/* ============ PROJECTS ============ */
+.proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.proj-card{
+  background:var(--bg-card);border:1px solid var(--line);border-radius:18px;
+  overflow:hidden;transition:transform 0.35s ease, border-color 0.35s ease;
+  position:relative;
+}
+.proj-card:hover{transform:translateY(-6px);border-color:var(--line-strong);}
+.proj-thumb{
+  height:180px;position:relative;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+  background:
+    linear-gradient(135deg, rgba(242,169,59,0.14), rgba(123,120,255,0.14));
+}
+.proj-thumb::before{
+  content:'';position:absolute;inset:0;
+  background-image:radial-gradient(rgba(232,230,225,0.14) 1px, transparent 1px);
+  background-size:16px 16px;
+}
+.proj-thumb .tag-icon{position:relative;z-index:1;font-family:var(--font-mono);font-size:12px;letter-spacing:0.1em;color:var(--muted);text-transform:uppercase;border:1px solid var(--line-strong);padding:7px 14px;border-radius:100px;background:rgba(10,13,19,0.5);backdrop-filter:blur(4px);}
+.proj-body{padding:24px;}
+.proj-cat{font-family:var(--font-mono);font-size:11.5px;color:var(--saffron);letter-spacing:0.08em;text-transform:uppercase;}
+.proj-body h3{font-family:var(--font-display);font-size:19px;font-weight:600;margin-top:10px;}
+.proj-body p{color:var(--muted);font-size:14px;margin-top:10px;}
+.proj-foot{display:flex;justify-content:space-between;align-items:center;margin-top:20px;}
+.proj-status{font-family:var(--font-mono);font-size:11px;color:var(--muted-dim);border:1px dashed var(--line-strong);padding:4px 10px;border-radius:100px;}
+.proj-link{font-family:var(--font-mono);font-size:12.5px;color:var(--ink);display:flex;align-items:center;gap:6px;transition:gap 0.25s ease, color 0.25s ease;}
+.proj-card:hover .proj-link{gap:10px;color:var(--saffron);}
+
+/* ============ MOTION GRAPHICS ============ */
+.motion-strip{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:16px;
+}
+.reel-card{
+  aspect-ratio:4/5;border-radius:16px;border:1px solid var(--line);
+  position:relative;overflow:hidden;
+  background:var(--bg-card);
+  display:flex;flex-direction:column;justify-content:flex-end;
+  transition:transform 0.35s ease, border-color 0.35s ease;
+}
+.reel-card:hover{transform:translateY(-6px) scale(1.015);border-color:var(--violet-dim);}
+.reel-card .play{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:52px;height:52px;border-radius:50%;
+  border:1px solid var(--line-strong);
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(10,13,19,0.55);backdrop-filter:blur(6px);
+  transition:border-color 0.3s ease, transform 0.3s ease;
+}
+.reel-card:hover .play{border-color:var(--saffron);transform:translate(-50%,-50%) scale(1.08);}
+.reel-card .play::after{
+  content:'';border-left:11px solid var(--ink);border-top:7px solid transparent;border-bottom:7px solid transparent;margin-left:3px;
+}
+.reel-card .rc-grad{position:absolute;inset:0;background:linear-gradient(160deg, rgba(123,120,255,0.16), transparent 55%, rgba(242,169,59,0.14));}
+.reel-info{position:relative;z-index:1;padding:16px;background:linear-gradient(0deg, rgba(10,13,19,0.85), transparent);}
+.reel-info .r-num{font-family:var(--font-mono);font-size:10.5px;color:var(--saffron);letter-spacing:0.1em;}
+.reel-info h4{font-family:var(--font-display);font-size:14.5px;font-weight:600;margin-top:4px;}
+.ticks{display:flex;gap:2px;margin-top:64px;opacity:0.5;}
+.ticks span{width:1px;height:14px;background:var(--line-strong);}
+.ticks span:nth-child(5n){height:22px;background:var(--muted-dim);}
+
+/* ============ GITHUB ============ */
+.gh-panel{
+  background:var(--bg-card);border:1px solid var(--line);border-radius:20px;
+  overflow:hidden;
+}
+.gh-topbar{
+  display:flex;align-items:center;gap:8px;padding:16px 20px;border-bottom:1px solid var(--line);
+  font-family:var(--font-mono);font-size:12px;color:var(--muted-dim);
+}
+.gh-topbar .tdot{width:9px;height:9px;border-radius:50%;}
+.gh-topbar .tdot:nth-child(1){background:#f2a93b;}
+.gh-topbar .tdot:nth-child(2){background:#7b78ff;}
+.gh-topbar .tdot:nth-child(3){background:#3ba26f;}
+.gh-body{padding:32px;display:grid;grid-template-columns:1fr 1.3fr;gap:40px;}
+.gh-stats{display:flex;flex-direction:column;gap:22px;}
+.gh-stat .n{font-family:var(--font-display);font-size:30px;font-weight:600;color:var(--ink);}
+.gh-stat .l{font-family:var(--font-mono);font-size:12px;color:var(--muted-dim);text-transform:uppercase;letter-spacing:0.07em;margin-top:2px;}
+.gh-graph{display:grid;grid-template-columns:repeat(26,1fr);gap:4px;align-content:start;}
+.gh-graph i{width:100%;aspect-ratio:1;border-radius:2.5px;background:var(--line);}
+.gh-graph i.l1{background:rgba(242,169,59,0.25);}
+.gh-graph i.l2{background:rgba(242,169,59,0.5);}
+.gh-graph i.l3{background:rgba(242,169,59,0.8);}
+.gh-graph i.l4{background:var(--saffron);}
+.gh-caption{font-family:var(--font-mono);font-size:11.5px;color:var(--muted-dim);margin-top:14px;}
+.repo-list{margin-top:16px;display:flex;flex-direction:column;gap:10px;}
+.repo-row{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:14px 16px;border:1px solid var(--line);border-radius:12px;
+  transition:border-color 0.25s ease, background 0.25s ease;
+}
+.repo-row:hover{border-color:var(--line-strong);background:#141b2b;}
+.repo-name{font-family:var(--font-mono);font-size:13.5px;color:var(--ink);display:flex;align-items:center;gap:8px;}
+.repo-name .rdot{width:8px;height:8px;border-radius:50%;background:var(--violet);}
+.repo-desc{font-size:12px;color:var(--muted-dim);margin-top:3px;}
+
+/* ============ CONTACT ============ */
+.contact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+.contact-lead h2{font-family:var(--font-display);font-size:clamp(32px,4.4vw,52px);font-weight:600;letter-spacing:-0.02em;line-height:1.12;}
+.contact-lead .grad{background:linear-gradient(100deg,var(--saffron),var(--violet));-webkit-background-clip:text;background-clip:text;color:transparent;}
+.contact-lead p{color:var(--muted);margin-top:18px;max-width:440px;font-size:16px;}
+.social-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:8px;}
+.social-card{
+  display:flex;align-items:center;gap:14px;
+  padding:18px 20px;border:1px solid var(--line);border-radius:14px;
+  background:var(--bg-card);
+  transition:transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+}
+.social-card:hover{transform:translateY(-4px);border-color:var(--saffron);background:#141b2b;}
+.social-card .s-icon{width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg, rgba(242,169,59,0.18), rgba(123,120,255,0.18));display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.social-card .s-icon svg{width:18px;height:18px;stroke:var(--ink);}
+.social-card .s-label{font-family:var(--font-mono);font-size:11px;color:var(--muted-dim);text-transform:uppercase;letter-spacing:0.06em;}
+.social-card .s-value{font-size:14px;font-weight:500;margin-top:2px;color:var(--ink);word-break:break-word;}
+
+footer{
+  padding:36px 0;position:relative;z-index:1;
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;
+}
+footer p{font-family:var(--font-mono);font-size:12px;color:var(--muted-dim);}
+
+/* reduced motion */
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:0.001ms !important;animation-iteration-count:1 !important;transition-duration:0.001ms !important;scroll-behavior:auto !important;}
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width:1024px){
+  .about-grid{grid-template-columns:1fr;gap:40px;}
+  .skills-grid{grid-template-columns:repeat(2,1fr);}
+  .proj-grid{grid-template-columns:repeat(2,1fr);}
+  .motion-strip{grid-template-columns:repeat(2,1fr);}
+  .gh-body{grid-template-columns:1fr;}
+  .contact-wrap{grid-template-columns:1fr;gap:40px;}
+  .hero .wrap{grid-template-columns:1fr;}
+  .bloom-wrap{order:-1;margin-bottom:10px;}
+  .bloom-wrap svg{max-width:280px;}
+}
+@media (max-width:720px){
+  .nav-links{display:none;}
+  .nav-cta{display:none;}
+  .burger{display:flex;}
+  .section{padding:80px 0;}
+  .skills-grid{grid-template-columns:repeat(2,1fr);}
+  .proj-grid{grid-template-columns:1fr;}
+  .motion-strip{grid-template-columns:repeat(2,1fr);}
+  .social-grid{grid-template-columns:1fr;}
+  .hero-stats{gap:24px;}
+  .wrap{padding:0 22px;}
+}
+@media (max-width:480px){
+  .skills-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<div class="grain-bg"></div>
+<div class="dot-grid"></div>
+
+<header id="siteHeader">
+  <div class="wrap">
+    <nav>
+      <a href="#home" class="logo"><span class="dot"></span>Owais Qayoom</a>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#education">Education</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#motion">Motion</a>
+        <a href="#github">GitHub</a>
+      </div>
+      <a href="#contact" class="nav-cta">Contact →</a>
+      <button class="burger" id="burgerBtn" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<div class="mobile-panel" id="mobilePanel">
+  <a href="#about">About</a>
+  <a href="#education">Education</a>
+  <a href="#skills">Skills</a>
+  <a href="#projects">Projects</a>
+  <a href="#motion">Motion</a>
+  <a href="#github">GitHub</a>
+  <a href="#contact">Contact</a>
+</div>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="home">
+  <div class="wrap">
+    <div>
+      <div class="hero-tag"><span class="loc-dot"></span>PAMPORE, KASHMIR — SAFFRON TOWN, INDIA</div>
+      <h1>Owais<br><span class="grad">Qayoom</span></h1>
+      <div class="role"><b>GIT + AI Learner</b> · Motion Graphics Enthusiast · Creative Technologist</div>
+      <p class="tagline">Learning. Creating. Innovating. — building a foundation across artificial intelligence, code and motion design, one project at a time.</p>
+      <div class="hero-cta">
+        <a href="#projects" class="btn btn-primary">View My Work</a>
+        <a href="#contact" class="btn btn-ghost">Contact Me</a>
+      </div>
+      <div class="hero-stats">
+        <div><div class="num">AI</div><div class="lbl">+ Git/GitHub focus</div></div>
+        <div><div class="num">9+</div><div class="lbl">Skills in progress</div></div>
+        <div><div class="num">KMR</div><div class="lbl">Rooted in Kashmir</div></div>
+      </div>
+    </div>
+
+    <div class="bloom-wrap">
+      <div class="halo"></div>
+      <svg viewBox="0 0 400 420" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <linearGradient id="petalGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#f2a93b"/>
+            <stop offset="100%" stop-color="#e1782e"/>
+          </linearGradient>
+          <linearGradient id="traceGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#7b78ff"/>
+            <stop offset="100%" stop-color="#4d4b99"/>
+          </linearGradient>
+        </defs>
+
+        <!-- crocus petals (Pampore saffron reference) -->
+        <path class="bloom-line" stroke="url(#petalGrad)" stroke-width="2"
+          d="M200 230 C 170 190, 160 130, 200 60 C 240 130, 230 190, 200 230 Z"/>
+        <path class="bloom-line d2" stroke="url(#petalGrad)" stroke-width="2"
+          d="M200 230 C 145 210, 95 175, 70 105 C 145 105, 195 150, 200 230 Z"/>
+        <path class="bloom-line d3" stroke="url(#petalGrad)" stroke-width="2"
+          d="M200 230 C 255 210, 305 175, 330 105 C 255 105, 205 150, 200 230 Z"/>
+
+        <!-- circuit stem / traces (AI reference) -->
+        <path class="bloom-line trace" stroke="url(#traceGrad)" stroke-width="1.6"
+          d="M200 230 L200 285 L150 320 L150 355"/>
+        <path class="bloom-line trace" stroke="url(#traceGrad)" stroke-width="1.6"
+          d="M200 285 L250 320 L250 355"/>
+        <path class="bloom-line trace" stroke="url(#traceGrad)" stroke-width="1.6"
+          d="M200 285 L200 340 L200 370"/>
+
+        <!-- nodes -->
+        <circle class="bloom-node" cx="150" cy="355" r="4.5" fill="#7b78ff" style="animation-delay:2.1s"/>
+        <circle class="bloom-node" cx="250" cy="355" r="4.5" fill="#7b78ff" style="animation-delay:2.25s"/>
+        <circle class="bloom-node" cx="200" cy="370" r="4.5" fill="#f2a93b" style="animation-delay:2.4s"/>
+        <circle class="bloom-node" cx="200" cy="60" r="5" fill="#f2a93b" style="animation-delay:1.9s"/>
+        <circle class="bloom-node" cx="70" cy="105" r="5" fill="#e1782e" style="animation-delay:2s"/>
+        <circle class="bloom-node" cx="330" cy="105" r="5" fill="#e1782e" style="animation-delay:2.05s"/>
+      </svg>
+    </div>
+  </div>
+  <div class="scroll-cue"><span>SCROLL</span><span class="line"></span></div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section class="section" id="about">
+  <div class="wrap">
+    <div class="eyebrow">01 · About Me</div>
+    <div class="about-grid">
+      <div class="about-card reveal">
+        <div class="init">OQ</div>
+        <div class="name">Owais Qayoom</div>
+        <div class="from">Pampore, Kashmir, India</div>
+        <div class="about-meta">
+          <div class="row"><span>Focus</span><span>AI + Git/GitHub</span></div>
+          <div class="row"><span>Also learning</span><span>Motion Graphics</span></div>
+          <div class="row"><span>School</span><span>GHSS Samboora</span></div>
+          <div class="row"><span>Currently at</span><span>GIT + AI</span></div>
+        </div>
+      </div>
+      <div class="about-copy reveal">
+        <p>My name is <b>Owais Qayoom</b>, and I'm from <b>Pampore, Kashmir</b> — a town known for its saffron fields, and the place that shapes how I see craft, patience and detail in everything I build.</p>
+        <p>I completed my 12th grade from <b>Boys Higher Secondary School Samboora</b>, and I'm currently pursuing my studies at <b>GIT + AI</b>, where I'm developing my skills across artificial intelligence, Git/GitHub, programming, web technologies and motion graphics.</p>
+        <p>I'm a young, curious learner — drawn equally to the logic of code and the rhythm of motion design. My goal is to grow into a creative technologist who can move fluidly between building intelligent systems and designing the visuals that bring them to life.</p>
+        <div class="chips">
+          <span class="chip">Artificial Intelligence</span>
+          <span class="chip">Git &amp; GitHub</span>
+          <span class="chip">Motion Graphics</span>
+          <span class="chip">Web Development</span>
+          <span class="chip">Creative Technology</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EDUCATION ============ -->
+<section class="section" id="education">
+  <div class="wrap">
+    <div class="eyebrow">02 · Education</div>
+    <div class="section-head">
+      <h2>My learning path so far</h2>
+      <p>Two chapters, one direction — from foundational schooling in Samboora to specialised training in AI and creative technology.</p>
+    </div>
+    <div class="timeline">
+      <div class="t-item reveal active">
+        <div class="t-dot"></div>
+        <div class="t-year">CURRENTLY ENROLLED</div>
+        <h3>GIT + AI</h3>
+        <p>Building practical skills in artificial intelligence, Git/GitHub workflows, programming, web technologies and motion graphics.</p>
+        <span class="t-badge">In progress</span>
+      </div>
+      <div class="t-item reveal">
+        <div class="t-dot"></div>
+        <div class="t-year">12TH GRADE</div>
+        <h3>Boys Higher Secondary School Samboora</h3>
+        <p>Completed secondary schooling, laying the foundation before moving into specialised technical and creative training.</p>
+        <span class="t-badge">Completed</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SKILLS ============ -->
+<section class="section" id="skills">
+  <div class="wrap">
+    <div class="eyebrow">03 · Skills</div>
+    <div class="section-head">
+      <h2>What I'm building expertise in</h2>
+      <p>A growing toolkit spanning artificial intelligence, development and creative motion — each skill actively in progress.</p>
+    </div>
+    <div class="skills-grid" id="skillsGrid">
+
+      <div class="skill-card reveal" style="--level:0.8">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg></div>
+        <h4>Artificial Intelligence</h4>
+        <div class="bar"><span></span></div><div class="lvl-lbl">Learning</div>
+      </div>
+
+      <div class="skill-card reveal" style="--level:0.85">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><circle cx="6" cy="18" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="6" cy="6" r="2.5"/><path d="M6 8.5v7M8.3 5.3 15.7 6M6 15.5c0-5 3-6 8-6"/></svg></div>
+        <h4>Git &amp; GitHub</h4>
+        <div class="bar"><span></span></div><div class="lvl-lbl">Practicing</div>
+      </div>
+
+      <div class="skill-card reveal" style="--level:0.7">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M8 3h8M12 3v6M6 9h12l-1.5 10a2 2 0 0 1-2 2h-5a2 2 0 0 1-2-2L6 9z"/></svg></div>
+        <h4>Python</h4>
+        <div class="bar"><span></span></div><div class="lvl-lbl">Learning</div>
+      </div>
+
+      <div class="skill-card reveal" style="--level:0.75">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18M8 21h8M12 18v3"/></svg></div>
+        <h4>Web Development</h4>
+        <div class="bar"><span></span></div><div class="lvl-lbl">Building</div>
+      </div>
+
+      <div class="skill-card reveal" style="--level:0.82">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M4 3l2 17 6 2 6-2 2-17H4z"/><path d="M8 8h8l-.4 4H9l.3 3 2.7.8 2.7-.8.2-2"/></svg></div>
+        <h4>HTML &amp; CSS</h4>
+        <div class="bar"><span></span></div><div class="lvl-lbl">Practicing</div>
+      </div>
+
+      <div class="skill-card reveal" style="--level:0.78">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M4 18V9l8-5 8 5v9M4 18h16M9 18v-5h6v5"/><path d="M4 9l8 5 8-5"/></svg></div>
+        <h4>Motion Graphics</h4>
+        <div class="bar"><span></span></div><div class="lvl-lbl">Exploring</div>
+      </div>
+
+      <div class="skill-card reveal" style="--level:0.72">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18M12 3a9 9 0 0 0 0 18"/></svg></div>
+        <h4>Graphic Design</h4>
+        <div class="bar"><span></span></div><div class="lvl-lbl">Exploring</div>
+      </div>
+
+      <div class="skill-card reveal" style="--level:0.76">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg></div>
+        <h4>Creative Technology</h4>
+        <div class="bar"><span></span></div><div class="lvl-lbl">Growing</div>
+      </div>
+
+      <div class="skill-card reveal" style="--level:0.84">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></div>
+        <h4>Problem Solving</h4>
+        <div class="bar"><span></span></div><div class="lvl-lbl">Core strength</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROJECTS ============ -->
+<section class="section" id="projects">
+  <div class="wrap">
+    <div class="eyebrow">04 · Projects</div>
+    <div class="section-head">
+      <h2>Selected work</h2>
+      <p>Placeholder projects ready to be swapped with real builds as they're completed — each one a step in the learning journey.</p>
+    </div>
+    <div class="proj-grid">
+
+      <div class="proj-card reveal">
+        <div class="proj-thumb"><span class="tag-icon">AI · Concept</span></div>
+        <div class="proj-body">
+          <div class="proj-cat">Artificial Intelligence</div>
+          <h3>AI Chat Assistant Concept</h3>
+          <p>A conceptual project exploring conversational AI logic and simple response systems.</p>
+          <div class="proj-foot">
+            <span class="proj-status">Coming soon</span>
+            <span class="proj-link">Details →</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-card reveal">
+        <div class="proj-thumb"><span class="tag-icon">Web · Build</span></div>
+        <div class="proj-body">
+          <div class="proj-cat">Web Development</div>
+          <h3>Portfolio Website v1</h3>
+          <p>This very site — designed and structured to practice modern front-end and layout skills.</p>
+          <div class="proj-foot">
+            <span class="proj-status">In progress</span>
+            <span class="proj-link">Details →</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-card reveal">
+        <div class="proj-thumb"><span class="tag-icon">Git · Workflow</span></div>
+        <div class="proj-body">
+          <div class="proj-cat">Git &amp; GitHub</div>
+          <h3>Version Control Practice Repo</h3>
+          <p>A repository dedicated to practicing branching, commits and collaborative Git workflows.</p>
+          <div class="proj-foot">
+            <span class="proj-status">Ongoing</span>
+            <span class="proj-link">Details →</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-card reveal">
+        <div class="proj-thumb"><span class="tag-icon">Motion · Reel</span></div>
+        <div class="proj-body">
+          <div class="proj-cat">Motion Graphics</div>
+          <h3>Kinetic Type Study</h3>
+          <p>A short kinetic typography exercise exploring timing, easing and visual rhythm.</p>
+          <div class="proj-foot">
+            <span class="proj-status">Coming soon</span>
+            <span class="proj-link">Details →</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-card reveal">
+        <div class="proj-thumb"><span class="tag-icon">Python · Script</span></div>
+        <div class="proj-body">
+          <div class="proj-cat">Programming</div>
+          <h3>Python Automation Script</h3>
+          <p>A small utility script built while learning Python fundamentals and logic structuring.</p>
+          <div class="proj-foot">
+            <span class="proj-status">Coming soon</span>
+            <span class="proj-link">Details →</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-card reveal">
+        <div class="proj-thumb"><span class="tag-icon">Design · UI</span></div>
+        <div class="proj-body">
+          <div class="proj-cat">Graphic Design</div>
+          <h3>Brand Identity Study</h3>
+          <p>A practice project designing a mock brand identity — logo, palette and type system.</p>
+          <div class="proj-foot">
+            <span class="proj-status">Coming soon</span>
+            <span class="proj-link">Details →</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ MOTION GRAPHICS ============ -->
+<section class="section" id="motion">
+  <div class="wrap">
+    <div class="eyebrow">05 · Motion Graphics</div>
+    <div class="section-head">
+      <h2>Frames in motion</h2>
+      <p>A showcase reel of motion graphics and creative work in progress — placeholders ready for real renders and edits.</p>
+    </div>
+    <div class="motion-strip">
+      <div class="reel-card reveal">
+        <div class="rc-grad"></div>
+        <div class="play"></div>
+        <div class="reel-info"><div class="r-num">REEL 01</div><h4>Logo Reveal Animation</h4></div>
+      </div>
+      <div class="reel-card reveal">
+        <div class="rc-grad"></div>
+        <div class="play"></div>
+        <div class="reel-info"><div class="r-num">REEL 02</div><h4>Kinetic Typography</h4></div>
+      </div>
+      <div class="reel-card reveal">
+        <div class="rc-grad"></div>
+        <div class="play"></div>
+        <div class="reel-info"><div class="r-num">REEL 03</div><h4>UI Micro-interactions</h4></div>
+      </div>
+      <div class="reel-card reveal">
+        <div class="rc-grad"></div>
+        <div class="play"></div>
+        <div class="reel-info"><div class="r-num">REEL 04</div><h4>Short Explainer Concept</h4></div>
+      </div>
+    </div>
+    <div class="ticks" aria-hidden="true">
+      <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GITHUB ============ -->
+<section class="section" id="github">
+  <div class="wrap">
+    <div class="eyebrow">06 · GitHub</div>
+    <div class="section-head">
+      <h2>Coding journey</h2>
+      <p>A running log of repositories, commits and the habits I'm building as a developer — one commit at a time.</p>
+    </div>
+    <div class="gh-panel reveal">
+      <div class="gh-topbar">
+        <span class="tdot"></span><span class="tdot"></span><span class="tdot"></span>
+        <span style="margin-left:8px;">github.com/owaisqayoom</span>
+      </div>
+      <div class="gh-body">
+        <div>
+          <div class="gh-stats">
+            <div class="gh-stat"><div class="n">Learning</div><div class="l">Current status</div></div>
+            <div class="gh-stat"><div class="n">Daily</div><div class="l">Commit habit — building</div></div>
+            <div class="gh-stat"><div class="n">Public</div><div class="l">Repos — coming soon</div></div>
+          </div>
+          <div class="repo-list">
+            <div class="repo-row">
+              <div><div class="repo-name"><span class="rdot"></span>ai-learning-notes</div><div class="repo-desc">Notes &amp; experiments from AI coursework</div></div>
+            </div>
+            <div class="repo-row">
+              <div><div class="repo-name"><span class="rdot"></span>portfolio-website</div><div class="repo-desc">Source for this very site</div></div>
+            </div>
+            <div class="repo-row">
+              <div><div class="repo-name"><span class="rdot"></span>python-practice</div><div class="repo-desc">Small scripts while learning Python</div></div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="gh-graph" id="ghGraph"></div>
+          <div class="gh-caption">// contribution activity — placeholder, syncing soon</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="section" id="contact" style="border-bottom:none;">
+  <div class="wrap">
+    <div class="eyebrow">07 · Contact</div>
+    <div class="contact-wrap">
+      <div class="contact-lead reveal">
+        <h2>Let's build something <span class="grad">worth noticing.</span></h2>
+        <p>Open to conversations with recruiters, teachers, clients and collaborators — reach out through any of the channels alongside.</p>
+        <a href="#" class="btn btn-primary" style="margin-top:28px;">Say Hello</a>
+      </div>
+      <div class="social-grid reveal">
+        <a href="#" class="social-card">
+          <div class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.36 1.09 2.93.83.09-.65.35-1.09.64-1.34-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.4 9.4 0 0 1 5 0c1.91-1.3 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.85-2.34 4.7-4.57 4.94.36.31.68.92.68 1.85v2.75c0 .26.18.58.69.48A10 10 0 0 0 12 2z"/></svg></div>
+          <div><div class="s-label">GitHub</div><div class="s-value">github.com/owaisqayoom</div></div>
+        </a>
+        <a href="#" class="social-card">
+          <div class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M7 10v7M7 7v.01M11 17v-4.5a2.5 2.5 0 0 1 5 0V17M11 12.5V17"/></svg></div>
+          <div><div class="s-label">LinkedIn</div><div class="s-value">linkedin.com/in/owaisqayoom</div></div>
+        </a>
+        <a href="#" class="social-card">
+          <div class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></div>
+          <div><div class="s-label">Instagram</div><div class="s-value">@owaisqayoom</div></div>
+        </a>
+        <a href="#" class="social-card">
+          <div class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></div>
+          <div><div class="s-label">Email</div><div class="s-value">owais.qayoom@example.com</div></div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;width:100%;">
+    <p>© <span id="year"></span> Owais Qayoom — Pampore, Kashmir</p>
+    <p>Designed &amp; built while learning GIT + AI</p>
+  </div>
+</footer>
+
+<script>
+// year
+document.getElementById('year').textContent = new Date().getFullYear();
+
+// header scroll state
+const header = document.getElementById('siteHeader');
+window.addEventListener('scroll', () => {
+  header.classList.toggle('scrolled', window.scrollY > 40);
+}, { passive:true });
+
+// mobile menu
+const burger = document.getElementById('burgerBtn');
+const panel = document.getElementById('mobilePanel');
+burger.addEventListener('click', () => {
+  const open = panel.classList.toggle('open');
+  burger.setAttribute('aria-expanded', open);
+});
+panel.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  panel.classList.remove('open');
+  burger.setAttribute('aria-expanded', 'false');
+}));
+
+// scroll reveal
+const revealEls = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('in');
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.15 });
+revealEls.forEach(el => io.observe(el));
+
+// skill bars fill on view
+const skillCards = document.querySelectorAll('.skill-card');
+const io2 = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('in');
+      io2.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.3 });
+skillCards.forEach(el => io2.observe(el));
+
+// generate github contribution graph placeholder
+const ghGraph = document.getElementById('ghGraph');
+if (ghGraph) {
+  const levels = ['', 'l1', 'l2', 'l3', 'l4'];
+  let html = '';
+  for (let i = 0; i < 130; i++) {
+    const r = Math.random();
+    const lvl = r > 0.82 ? levels[4] : r > 0.68 ? levels[3] : r > 0.5 ? levels[2] : r > 0.32 ? levels[1] : levels[0];
+    html += `<i class="${lvl}"></i>`;
+  }
+  ghGraph.innerHTML = html;
+}
+</script>
+
+</body>
+</html>
